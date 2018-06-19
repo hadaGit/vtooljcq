@@ -1,20 +1,38 @@
 package vip.vtool.jcq.entity;
 
-import java.io.Serializable;
-
 /**
+ * 群消息
  * @author lwd
  * @date 2018/6/14 11:38
  */
-public class GroupMsg implements Serializable {
-
-    private static final long serialVersionUID = -3699318747612538605L;
+public class GroupMsg {
+    /**
+     * 子类型，目前固定为1
+     */
     private int subType;
+    /**
+     * 消息ID
+     */
     private int msgId;
+    /**
+     * 来源群号
+     */
     private long fromGroup;
+    /**
+     * 来源QQ号
+     */
     private long fromQQ;
+    /**
+     * 来源匿名者
+     */
     private String fromAnonymous;
+    /**
+     * 消息内容
+     */
     private String msg;
+    /**
+     * 字体
+     */
     private int font;
 
     public int getSubType() {

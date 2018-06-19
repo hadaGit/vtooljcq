@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 抽象jcq实现
  * @author lwd
  * @date 2018/6/14 9:27
  */
@@ -176,7 +177,7 @@ public abstract class JcqAppAbstractImpl extends JcqAppAbstract {
                 DiscussMsg discussMsg = new DiscussMsg();
                 discussMsg.setSubType(subType);
                 discussMsg.setMsgId(msgId);
-                discussMsg.setMsgId(msgId);
+                discussMsg.setFromDiscuss(fromDiscuss);
                 discussMsg.setFromQQ(fromQQ);
                 discussMsg.setMsg(msg);
                 discussMsg.setFont(font);
@@ -243,6 +244,7 @@ public abstract class JcqAppAbstractImpl extends JcqAppAbstract {
                 systemGroupMemberDecrease.setSubType(subType);
                 systemGroupMemberDecrease.setSendTime(sendTime);
                 systemGroupMemberDecrease.setFromGroup(fromGroup);
+                systemGroupMemberDecrease.setFromQQ(fromQQ);
                 systemGroupMemberDecrease.setBeingOperateQQ(beingOperateQQ);
                 qqMessage.setSystemGroupMemberDecrease(systemGroupMemberDecrease);
                 if (invoke.call(this, qqMessage) == IMsg.MSG_INTERCEPT) {

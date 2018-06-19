@@ -1,15 +1,30 @@
 package vip.vtool.jcq.entity;
 
 /**
+ * 群文件上传
  * @author lwd
  * @date 2018/6/14 16:40
  */
 public class GroupUpload {
-
+    /**
+     * 子类型，目前固定为1
+     */
     private int subType;
+    /**
+     * 发送时间(时间戳)// 10位时间戳
+     */
     private int sendTime;
+    /**
+     * 来源群号
+     */
     private long fromGroup;
+    /**
+     * 来源QQ号
+     */
     private long fromQQ;
+    /**
+     * 上传文件信息
+     */
     private String file;
 
     public int getSubType() {

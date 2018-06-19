@@ -3,6 +3,7 @@ package vip.vtool.jcq.entity;
 import java.io.Serializable;
 
 /**
+ * 事件、消息回调实体
  * @author lwd
  * @date 2018/6/14 9:35
  */
@@ -50,6 +51,11 @@ public class QQMessage implements Serializable {
      */
     private RequestAddGroup requestAddGroup;
 
+    /**
+     * 群成员变动
+     */
+    private SystemGroupAdmin systemGroupAdmin;
+
     public RequestAddGroup getRequestAddGroup() {
         return requestAddGroup;
     }
@@ -89,11 +95,6 @@ public class QQMessage implements Serializable {
     public void setSystemGroupMemberDecrease(SystemGroupMemberDecrease systemGroupMemberDecrease) {
         this.systemGroupMemberDecrease = systemGroupMemberDecrease;
     }
-
-    /**
-     * 群成员变动
-     */
-    private SystemGroupAdmin systemGroupAdmin;
 
     public SystemGroupAdmin getSystemGroupAdmin() {
         return systemGroupAdmin;

@@ -1,13 +1,11 @@
 package vip.vtool.jcq.entity;
 
-import java.io.Serializable;
-
 /**
+ * 私聊消息
  * @author lwd
  * @date 2018/6/14 11:35
  */
-public class PrivateMsg implements Serializable{
-    private static final long serialVersionUID = 3039994787473628268L;
+public class PrivateMsg {
     /**
      * 消息ID
      */

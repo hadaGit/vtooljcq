@@ -1,7 +1,9 @@
 package vip.vtool.jcq.event;
 
 
+import com.sobte.cqp.jcq.entity.ICQVer;
 import com.sobte.cqp.jcq.entity.IMsg;
+import com.sobte.cqp.jcq.entity.IRequest;
 import com.sobte.cqp.jcq.event.IType;
 import com.sobte.cqp.jcq.event.JcqAppAbstract;
 import vip.vtool.jcq.annotation.Bind;
@@ -20,13 +22,33 @@ import java.util.Map;
  * @author lwd
  * @date 2018/6/14 9:27
  */
-public abstract class JcqAppAbstractImpl extends JcqAppAbstract {
+public abstract class JcqAppAbstractImpl extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
 
     /**
      * 注解绑定的函数映射
      */
     private final Map<Integer, List<Invoke>> mapping = new HashMap<>(8);
 
+    private String appInfo;
+
+    public JcqAppAbstractImpl(){
+        System.out.println("------------appinfo 自动读取中...---------");
+        String appDirectory = CQ.getAppDirectory();
+        int startIndex = appDirectory.substring(0,appDirectory.length() - 1).lastIndexOf("\\");
+        int endIndex = appDirectory.lastIndexOf("\\");
+        appInfo = CQAPIVER + "," + appDirectory.substring(startIndex + 1,endIndex);
+        System.out.println("appinfo = " + appInfo);
+        init();
+    }
+
+    @Override
+    public String appInfo() {
+        return appInfo;
+    }
+
+    /**
+     * 初始化 扫描
+     */
     private void init(){
         JcqAppAbstract.CQ.logDebug(this.getClass().getName(),"开始初始化 注解");
         Method[] methods = this.getClass().getMethods();
@@ -72,7 +94,6 @@ public abstract class JcqAppAbstractImpl extends JcqAppAbstract {
 
     @Override
     public int startup() {
-        init();
         List<Invoke> invokes = mapping.get(IType.EVENT_Startup);
         if(invokes != null) {
             for (Invoke invoke : invokes) {

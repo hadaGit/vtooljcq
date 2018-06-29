@@ -19,6 +19,14 @@ public class Invoke {
         this.method = method;
     }
 
+    public Method getMethod() {
+        return method;
+    }
+
+    public void setMethod(Method method) {
+        this.method = method;
+    }
+
     /**
      * 回调给客户端
      * @param bot

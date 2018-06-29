@@ -50,15 +50,15 @@ public abstract class JcqAppAbstractImpl extends JcqAppAbstract implements ICQVe
      * 初始化 扫描
      */
     private void init(){
-        JcqAppAbstract.CQ.logDebug(this.getClass().getName(),"开始初始化 注解");
-        Method[] methods = this.getClass().getMethods();
+        JcqAppAbstract.CQ.logDebug(JcqAppAbstractImpl.class.getName(),"开始初始化 注解");
+        Method[] methods = JcqAppAbstractImpl.class.getMethods();
         for (Method method : methods) {
             Bind bind = method.getAnnotation(Bind.class);
-            JcqAppAbstract.CQ.logDebug(this.getClass().getName(),"查找到方法 "+ method.getName());
+            JcqAppAbstract.CQ.logDebug(JcqAppAbstractImpl.class.getName(),"查找到方法 "+ method.getName());
             if (null == bind) {
                 continue;
             }
-            JcqAppAbstract.CQ.logDebug(this.getClass().getName(),"查找到bind: "+ bind.msgType());
+            JcqAppAbstract.CQ.logDebug(JcqAppAbstractImpl.class.getName(),"查找到bind: "+ bind.msgType());
             if (method.getParameterTypes().length != 1) {
                 throw new BindMsgException("方法 " + method.getName() + " 参数个数不对，请检查");
             }
@@ -76,11 +76,11 @@ public abstract class JcqAppAbstractImpl extends JcqAppAbstract implements ICQVe
                     default:
                         Class<?> returnType = method.getReturnType();
                         if(!returnType.toString().equals("int")){
-                            throw new BindMsgException("方法 " + this.getClass().getPackage().toString() + "." +
-                            this.getClass().getName() + "." + method.getName() + " 返回值不对[非 int]，请检查");
+                            throw new BindMsgException("方法 " + JcqAppAbstractImpl.class.getPackage().toString() + "." +
+                            JcqAppAbstractImpl.class.getName() + "." + method.getName() + " 返回值不对[非 int]，请检查");
                         }
                 }
-                JcqAppAbstract.CQ.logDebug(this.getClass().getName(),"添加方法 类型" + msgType + method.getName());
+                JcqAppAbstract.CQ.logDebug(JcqAppAbstractImpl.class.getName(),"添加方法 类型" + msgType + method.getName());
                 List<Invoke> invokes = mapping.get(msgType);
                 if (null == mapping.get(msgType)) {
                     invokes = new ArrayList<>();
@@ -88,7 +88,7 @@ public abstract class JcqAppAbstractImpl extends JcqAppAbstract implements ICQVe
                 invokes.add(new Invoke(method));
                 mapping.put(msgType, invokes);
             }
-            JcqAppAbstract.CQ.logInfo(this.getClass().getName(),String.format("绑定消息监听函数 [%s] => %s", method.getName(), Arrays.toString(msgTypes)));
+            JcqAppAbstract.CQ.logInfo(JcqAppAbstractImpl.class.getName(),String.format("绑定消息监听函数 [%s] => %s", method.getName(), Arrays.toString(msgTypes)));
         }
     }
 
